@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: [gyg-gha-runner-16x64]
+    runs-on: [gyg-gha-runner-32x128]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
