@@ -32,6 +32,6 @@ jobs:
         pull: true
         file: tools/router-check-tool/Dockerfile
         context: .
-        platforms: linux/amd64,linux/arm64
+        platforms: linux/amd64
         push: ${{ startsWith(github.ref_name, 'release-') && github.event_name == 'push'}}
         tags: cainelli/router_check_tool:${{ github.ref_name }}
