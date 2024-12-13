@@ -1,7 +1,9 @@
 name: build
 on:
-  push: {} # TODO: fix before merge
-  pull_request: {}
+  push:
+    branches:
+      - release-1.23
+
 concurrency: ${{ github.ref }}
 permissions:
   contents: read
