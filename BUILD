@@ -1,6 +1,7 @@
 load(
     "@envoy//bazel:envoy_build_system.bzl",
     "envoy_cc_binary",
+    "envoy_cc_test_binary",
 )
 
 # Copyright 2016 Istio Authors. All Rights Reserved.
@@ -53,4 +54,19 @@ pkg_tar(
     mode = "0755",
     package_dir = "/usr/local/bin/",
     tags = ["manual"],
+)
+
+envoy_cc_test_binary(
+    name = "router_check_tool",
+    repository = "@envoy",
+    srcs = [
+        "@envoy//test/tools/router_check:router_check.cc",
+    ],
+    deps = ISTIO_EXTENSIONS +  [
+        "@envoy//test/tools/router_check:router_check_main_lib",
+        "@envoy//source/extensions/retry/host/previous_hosts:config",
+        "@envoy//source/extensions/retry/host/omit_canary_hosts:config",
+        "@envoy//source/extensions/retry/host/omit_host_metadata:config",
+        "@envoy//source/extensions/filters/http/fault:config",
+    ],
 )
