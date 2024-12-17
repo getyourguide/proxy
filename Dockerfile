@@ -1,4 +1,4 @@
-FROM gcr.io/istio-testing/build-tools-proxy:master-latest as builder
+FROM gcr.io/istio-testing/build-tools-proxy:release-1.23-latest AS builder
 
 WORKDIR /work/
 
