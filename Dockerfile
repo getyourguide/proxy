@@ -4,7 +4,9 @@ WORKDIR /work/
 
 COPY . /work/
 
-RUN bazel build envoy
+RUN ./common/scripts/run.sh env CC=clang CXX=clang++
+
+RUN bazel build --config=libc++ //:envoy
 
 FROM istio/proxyv2:1.23.3
 

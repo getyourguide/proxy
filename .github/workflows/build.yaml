@@ -27,11 +27,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          pull: true
-          file: Dockerfile
-          context: .
-          platforms: linux/amd64
-          push: true
-          tags: getyourguide/proxy:1.23.3-patch
+        run: HUB=getyourguide TAG=1.23-patch BUILD_WITH_CONTAINER=1 make docker push
+      #   uses: docker/build-push-action@v6
+      #   with:
+      #     pull: true
+      #     file: Dockerfile
+      #     context: .
+      #     platforms: linux/amd64
+      #     push: true
+      #     tags: getyourguide/proxy:1.23.3-patch
