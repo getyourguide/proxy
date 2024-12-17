@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        run: HUB=getyourguide TAG=1.23-patch BUILD_WITH_CONTAINER=1 make docker push
+        run: HUB=getyourguide TAG=1.23-patch BUILD_WITH_CONTAINER=1 make
       #   uses: docker/build-push-action@v6
       #   with:
       #     pull: true
