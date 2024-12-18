@@ -27,8 +27,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Envoy
-        run: -|
-          BUILD_WITH_CONTAINER=1 make
+        run: |
+          BUILD_WITH_CONTAINER=1 make;
           find . -maxdepth 3
 
       - name: Build and push Docker image
