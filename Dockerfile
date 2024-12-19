@@ -4,7 +4,7 @@ WORKDIR /work/
 
 COPY . /work/
 
-RUN make build_envoy
+RUN BAZEL_BUILD_ARGS="--config=libc++" make build_envoy
 
 FROM istio/proxyv2:1.24.2
 
