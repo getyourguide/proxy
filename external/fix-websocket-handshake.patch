@@ -1,0 +1,20 @@
+diff --git a/source/extensions/filters/http/ext_proc/ext_proc.h b/source/extensions/filters/http/ext_proc/ext_proc.h
+index 240ffc505e..4bca507463 100644
+--- a/source/extensions/filters/http/ext_proc/ext_proc.h
++++ b/source/extensions/filters/http/ext_proc/ext_proc.h
+@@ -455,6 +455,15 @@ public:
+   void onComplete(envoy::service::ext_proc::v3::ProcessingResponse& response) override;
+   void onError() override;
+ 
++  Envoy::Http::LocalErrorStatus
++  onLocalReply(const Envoy::Http::StreamFilterBase::LocalReplyData&) override {
++    ENVOY_LOG(debug, "When onLocalReply() is called, set processing_complete_ to true to skip "
++                     "external processing");
++    processing_complete_ = true;
++
++    return ::Envoy::Http::LocalErrorStatus::Continue;
++  }
++
+ private:
+   void mergePerRouteConfig();
+   StreamOpenState openStream();
