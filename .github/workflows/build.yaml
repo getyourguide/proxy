@@ -1,9 +1,8 @@
 name: build
 on:
   push:
-    {}
-    # branches:
-    #   - release-1.24
+    branches:
+      - release-1.24
 
 concurrency: ${{ github.ref }}
 permissions:
@@ -34,4 +33,4 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          tags: getyourguide/proxy:1.24.2-patch.1
+          tags: getyourguide/proxy:1.24.2-patch.${{ github.run_number }}
