@@ -26,12 +26,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Envoy
-        run: |
-          BUILD_WITH_CONTAINER=1 make build_envoy;
-          ls -lha bazel-bin/;
-          find . -maxdepth 4
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:

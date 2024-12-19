@@ -1,3 +1,11 @@
+FROM gcr.io/istio-testing/build-tools-proxy:release-1.23-latest AS builder
+
+WORKDIR /work/
+
+COPY . /work/
+
+RUN make build
+
 FROM istio/proxyv2:1.23.3
 
-COPY ./bazel-bin/envoy /usr/local/bin/
+COPY --from=builder /work/bazel-bin/envoy /usr/local/bin/
