@@ -1,9 +1,8 @@
 name: build
 on:
   push:
-    {}
-    # branches:
-    #   - release-1.24
+    branches:
+      - release-1.24
 
 concurrency: ${{ github.ref }}
 permissions:
