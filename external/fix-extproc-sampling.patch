@@ -1,0 +1,14 @@
+diff --git a/source/extensions/filters/http/ext_proc/ext_proc.cc b/source/extensions/filters/http/ext_proc/ext_proc.cc
+index 0d35d05425..d1de199068 100644
+--- a/source/extensions/filters/http/ext_proc/ext_proc.cc
++++ b/source/extensions/filters/http/ext_proc/ext_proc.cc
+@@ -416,7 +416,8 @@ Filter::StreamOpenState Filter::openStream() {
+     auto options = Http::AsyncClient::StreamOptions()
+                        .setParentSpan(decoder_callbacks_->activeSpan())
+                        .setParentContext(grpc_context)
+-                       .setBufferBodyForRetry(grpc_service_.has_retry_policy());
++                       .setBufferBodyForRetry(grpc_service_.has_retry_policy())
++                       .setSampled(absl::nullopt);
+ 
+     ExternalProcessorClient* grpc_client = dynamic_cast<ExternalProcessorClient*>(client_.get());
+     ExternalProcessorStreamPtr stream_object =
